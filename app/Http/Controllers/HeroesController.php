@@ -78,6 +78,9 @@ class HeroesController extends Controller
     public function edit($id)
     {
         $hero = Hero::find($id);
+        if(!$hero) {
+            abort(404, "Page not found");
+        }
         //dd($hero);
         return view('edit')->with('hero', $hero);
     }
