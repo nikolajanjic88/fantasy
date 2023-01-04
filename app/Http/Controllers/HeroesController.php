@@ -63,9 +63,12 @@ class HeroesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Hero $hero)
     {
-        $hero = Hero::find($id);
+        //$hero = Hero::find($id); moze da bude show($id) pa da radim Hero::find($id), a moze i show(Hero $hero) i onda ne moram da radim find(), ali ruta mora biti {hero}
+        if(!$hero) {
+            abort(404, 'Page not found');
+        }
         return view('hero')->with('hero', $hero);
     }
 
@@ -75,9 +78,8 @@ class HeroesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Hero $hero)
     {
-        $hero = Hero::find($id);
         if(!$hero) {
             abort(404, "Page not found");
         }
@@ -92,11 +94,8 @@ class HeroesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Hero $hero)
     {
-
-        $hero = Hero::find($id);
-
         //samo da korisnik koji je napravio heroja moze da edituje
         if($hero->user_id != auth()->id()) {
             abort(403, 'Unauthorized action');

@@ -37,7 +37,7 @@
                 <form action="/hero/{{ $hero->id }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="bg-red-700 text-white mt-6 py-2 rounded-xl hover:opacity-80 w-full"><i
+                    <button class="bg-red-700 text-white mt-6 py-2 rounded-xl hover:opacity-80 w-full" onclick="return confirm('Are you sure?')"><i
                         class="fa-solid fa-trash"></i> Delete
                     </button>
                 </form>

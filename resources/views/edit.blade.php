@@ -33,19 +33,13 @@
             </div>
 
             <div class="mb-6">
-                <label for="logo" class="inline-block text-lg mb-2">
-                  Company Logo
-                </label>
+                <label for="logo" class="inline-block text-lg mb-2">Hero photo</label>
+                <img class="w-48 mr-6 mb-6" src="{{ $hero->logo ? asset('storage/' . $hero->logo) : asset('/images/no-image.png') }}" alt=""/>
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
-        
                 @error('logo')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
-            <img
-                class="w-48 mr-6 mb-6"
-                src="{{ $hero->logo ? asset('storage/' . $hero->logo) : asset('/images/no-image.png') }}"
-                alt=""/>
 
             <div class="mb-6">
                 <button class="bg-cyan-800 w-40 text-white rounded py-2 px-4 hover:bg-black">
@@ -53,7 +47,7 @@
                 </button>
 
                 <a href="/hero/{{ $hero->id }}" class="btn bg-yellow-800 text-white rounded py-2 px-4 hover:bg-black">
-                    Go Back 
+                    Go Back
                 </a>
             </div>
         </form>
